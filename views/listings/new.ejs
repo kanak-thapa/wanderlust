@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row mt-3">
+    <div class="col-8 offset-2">
+        <br>
+      <h1>Create a new listing</h1>
+      <form action="/listings" method="POST" nonvalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Add a catchy title"
+            name="listing[title]"
+            id="title"
+            
+          />
+          <div class="valid-feedback">Title looks good</div>
+          <div class="invalid-feedback">Title looks bad</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            name="listing[description]"
+            id="description"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label ">Upload Listing Image</label>
+          <input
+            class="form-control"
+            type="file"
+            placeholder="enter image URL/Link"
+            name="listing[image]"
+            id="image"
+          />
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">price</label>
+                <input
+                  class="form-control"
+                
+                  placeholder="1200"
+                  name="listing[price]"
+                  id="price"
+                  
+                />
+                <div class="invalid-feedback">please enter a valid price</div>
+              </div>
+      
+              <div class="mb-3 col-md-8">
+                <label for="location" class="form-label">location</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Jaipur, Rajasthan"
+                  name="listing[location]"
+                  id="location"
+                  
+                />
+                <div class="invalid-feedback">please enter a valid location</div>
+              </div>
+        </div>
+        <div class="mb-3">
+          <label for="country" class="form-label">country</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="India"
+            name="listing[country]"
+            id="country"
+            
+          />
+          <div class="invalid-feedback">please enter a valid country</div>
+        </div>
+        <button class="btn btn-dark add-btn">Add</button>
+        <br>
+      </form>
+      <br>
+    </div>
+  </div>
+</body>
