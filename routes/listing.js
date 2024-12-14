@@ -13,6 +13,7 @@ const upload = multer({storage});//it will take out the file and store it in upl
 
 router
 .route("/")
+
 .get(wrapAsync(listingControllers.index))
 .post(
     isLoggenIn, 
