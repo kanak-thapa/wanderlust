@@ -73,7 +73,7 @@ module.exports.updateListings = async (req, res, next) => {
 
 module.exports.deleteListings = async(req, res, next)=>{
     let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
+    await Listing.findByIdAndDelete(id);//when findByIdAndDelete is seen it call the middleware and then the deletion process is made
     req.flash("success", "listing deleted");
     res.redirect("/listings");
 }
