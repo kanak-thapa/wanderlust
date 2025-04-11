@@ -30,7 +30,7 @@ module.exports.isOwner = async(req, res, next)=>{
 }
 
 module.exports.validateListing  = (req, res, next) =>{//middleware
-    let {error} = listingSchema.validate(req.body);
+    let {error} = listingSchema.validate(req.body);//yehh joi se aya he validate karne ke liye
         if(error){
             let errMsg = error.details.map((el)=> el.message).join(",");
             //console.log(errMsg);
@@ -42,7 +42,7 @@ module.exports.validateListing  = (req, res, next) =>{//middleware
 }
 module.exports.validateReview  = (req, res, next) =>{
     let {error} = reviewSchema.validate(req.body);
-        if(error){     
+        if(error){     //same here joi se ayega
             let errMsg = error.details.map((el)=> el.message).join(",");
             console.log(errMsg);
             throw new ExpressError(400, errMsg);

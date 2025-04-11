@@ -17,7 +17,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
    
-const Listing = require('./models/listings');
+//const Listing = require('./models/listings');
 //const wrapAsync = require("./utils/wrapAsync.js");
 //const {listingSchema, reviewSchema} = require("./schema.js");
 //const Review = require("./models/review.js");
@@ -47,12 +47,6 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
-
-app.get("/", async(req, res)=>{
-    const allListings = await Listing.find({});
-    // console.log(allListings);
-    res.render("./listings/index.ejs", {allListings});
-})
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
