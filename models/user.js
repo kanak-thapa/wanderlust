@@ -12,6 +12,7 @@ const userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User", userSchema);
+
 //username hashing salting hasg passowrd also add methods: 
 /* 
 instance: set pass, change pass
