@@ -24,3 +24,8 @@
 //     next(err);
 // })
 image link
+
+
+X1EBZWH6NwLZpUSG
+
+mongodb+srv://thapakanak604_db_user:X1EBZWH6NwLZpUSG@cluster0.dxk0o1r.mongodb.net/?appName=Cluster0
