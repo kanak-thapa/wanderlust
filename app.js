@@ -37,7 +37,7 @@ main()
 })
 
 async function main(){
-    await mongoose.connect(dbUrl);
+    mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -98,10 +98,12 @@ app.get("/demouser", async(req, res)=>{
     //store, helloworld is a password, callback can also be defined
     res.send(registeredUser);
 })
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+app.use("/", usersRouter);
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/", usersRouter);
 
 //erroe handeling
 app.all("*", (req, res, next)=>{

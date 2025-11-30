@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const router = express.Router({mergeParams: true});
 const wrapAsync = require("../utils/wrapAsync.js");
 //const {listingSchema, reviewSchema} = require("../schema.js");
@@ -9,7 +10,6 @@ const listingControllers = require("../controllers/listings.js");
 const multer  = require('multer');//help in parsing form data
 const {storage} = require("../cloudConfig.js");
 const upload = multer({storage});//it will take out the file and store it in uploads
-
 
 router
 .route("/")
