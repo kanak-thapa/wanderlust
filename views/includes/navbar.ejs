@@ -1,61 +1,240 @@
+<!-- Desktop/Tablet Navbar -->
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top desktop-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+    <div class="navbar-nav">
+      <a class="nav-link navTitle" href="/listings">WanderLust</a>
+    </div>
+    <div class="navbar-nav ms-auto">
+      <form class="d-flex search-box" role="search" action="/listings" method="GET">
+        <input
+          class="form-control me-2 search-place"
+          type="search"
+          name="q"
+          placeholder="Search country..."
+          aria-label="Search"
+        />
+        <button class="btn btn-search" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </form>
+    </div>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="/listings/new">Airbnb your home</a>
+      <% if (!currUser) { %>
+      <a class="nav-link" href="/signup"><b>Sign up</b></a>
+      <a class="nav-link" href="/login"><b>Login</b></a>
+      <% } %>
+      <% if (currUser) { %>
+      <a class="nav-link" href="/logout">Log out</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navbar (Search Only) -->
+<nav class="navbar bg-body-light border-bottom sticky-top mobile-nav">
+  <div class="container-fluid">
+    <form class="d-flex search-box w-100" role="search" action="/listings" method="GET">
+      <input
+        class="form-control me-2 search-place"
+        type="search"
+        name="q"
+        placeholder="Search country..."
+        aria-label="Search"
+      />
+      <button class="btn btn-search" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+  </div>
+</nav>
+
+<!-- Mobile Bottom Navigation -->
+<div class="bottom-nav">
+  <a href="/listings" class="bottom-nav-item">
+    <i class="fa-regular fa-compass"></i>
+    <span>Explore</span>
+  </a>
+  <a href="/listings/new" class="bottom-nav-item">
+    <i class="fa-solid fa-plus-circle"></i>
+    <span>Add Home</span>
+  </a>
+  <% if (!currUser) { %>
+  <a href="/login" class="bottom-nav-item">
+    <i class="fa-solid fa-right-to-bracket"></i>
+    <span>Login</span>
+  </a>
+  <a href="/signup" class="bottom-nav-item">
+    <i class="fa-solid fa-user-plus"></i>
+    <span>Sign up</span>
+  </a>
+  <% } %>
+  <% if (currUser) { %>
+  <a href="/logout" class="bottom-nav-item">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+  </a>
+  <% } %>
+</div>
+
 <style>
-  .btn-search{
-  background-color: #fe424d;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
-  border-radius: 25px;
-  padding: 0 1rem 0 1rem;
+  /* Desktop Navigation - Default visible */
+  .desktop-nav {
+    display: flex;
   }
-  .btn-search:hover{
+  
+  /* Mobile Navigation - Hidden by default */
+  .mobile-nav {
+    display: none;
+  }
+  
+  /* Bottom Navigation - Hidden by default */
+  .bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    padding: 0.5rem 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #666;
+    padding: 0.5rem 0;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+  }
+  
+  .bottom-nav-item:hover {
+    color: #fe424d;
+  }
+  
+  .bottom-nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .bottom-nav-item span {
+    font-size: 0.7rem;
+  }
+
+  .btn-search{
     background-color: #fe424d;
     color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Mobile Responsive Styles */
+  @media (max-width: 767px) {
+    /* Hide desktop nav, show mobile nav */
+    .desktop-nav {
+      display: none;
+    }
     
+    .mobile-nav {
+      display: flex;
+    }
+    
+    /* Show bottom navigation */
+    .bottom-nav {
+      display: flex;
+    }
+    
+    /* Add padding to body to prevent content being hidden behind bottom nav */
+    body {
+      padding-bottom: 70px;
+    }
+    
+    /* Adjust search box for mobile */
+    .mobile-nav .search-box {
+      width: 100%;
+    }
+    
+    .mobile-nav .btn-search {
+      padding: 0.375rem 0.75rem;
+    }
+    
+    /* Hide search button text on very small screens */
+    .mobile-nav .btn-search {
+      font-size: 0;
+    }
+    
+    .mobile-nav .btn-search i {
+      font-size: 1rem;
+    }
   }
-  .fa-magnifying-glass{
-      font-size: 14px;
+  
+  /* Filter section styles */
+  #filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
-  .search-place{
-    border-radius: 25px;
-    padding: 10px 30px;
-    border: 1px solid black;
+  
+  .filter {
+    text-align: center;
+    margin-right: 2rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    opacity: 0.7;
   }
-  .navTitle{
-    font-size: 30px;
+  
+  .filter:hover {
+    opacity: 1;
+  }
+  
+  .filter p {
+    font-size: 0.8rem;
+  }
+  
+  .tax-info {
+    display: none;
+  }
+  
+  .tax-switch {
+    height: 50px;
+    border: 0.5px solid black;
+    border-radius: 0.5rem;
+    width: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5rem;
+  }
+  
+  /* Mobile adjustments for filters */
+  @media (max-width: 767px) {
+    #filters {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+    }
+    
+    .filter {
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .tax-switch {
+      width: auto;
+      margin-left: 1rem;
+      padding: 0 1rem;
+    }
   }
 </style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link navTitle" href="/listings">WanderLust</a>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex search-box" role="search">
-            <input class="form-control me-2 search-place" type="search" placeholder="Search destinations
-            " aria-label="Search">
-            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-          </form>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-          <!-- we cant use this, so we will use locals -->
-          <% if (!currUser) { %> 
-            <a class="nav-link" href="/signup"><b>Sign up</b></a>
-            <a class="nav-link" href="/login"><b>Login</b></a>
-          <% } %> <% if (currUser) { %>
-            <a class="nav-link" href="/logout">Log out</a>
-          <% } %>
-          
-        </div>
-      </div>
-    </div>
-  </nav>
-  

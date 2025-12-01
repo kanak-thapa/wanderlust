@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router({mergeParams: true});
+const Listing = require("../models/listings");
 const wrapAsync = require("../utils/wrapAsync.js");
 //const {listingSchema, reviewSchema} = require("../schema.js");
 //const ExpressError = require("../utils/ExpressError.js");
@@ -11,15 +12,36 @@ const multer  = require('multer');//help in parsing form data
 const {storage} = require("../cloudConfig.js");
 const upload = multer({storage});//it will take out the file and store it in uploads
 
+ // <- ensure correct path/name
+// other imports...
+
+
+
+router.get("/", wrapAsync(async (req, res) => {
+  const q = (req.query.q || "").trim();
+  console.log("[/listings] search query:", q);
+
+  let filter = {};
+  if (q) {
+    // search by country (case-insensitive) — change field name if your schema uses 'location' or 'countryName'
+    filter = { country: { $regex: q, $options: "i" } };
+  }
+
+  // If listings large, consider limit/skip/pagination
+  const listings = await Listing.find(filter);
+  console.log("[/listings] found:", listings.length);
+  res.render("listings/index.ejs", { listings, q });
+}));
+
 router
 .route("/")
-
-.get(wrapAsync(listingControllers.index))
 .post(
     isLoggenIn, 
     upload.single('listing[image]'),
     validateListing, 
     wrapAsync(listingControllers.createListing)),
+// Index / list + search
+
 
 // .post( (req, res)=>{//kis field se file nikal rahe he
 //     res.send(req.file);
