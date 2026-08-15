@@ -289,16 +289,10 @@ screenshots/
   <strong>Kanak Thapa</strong>
 </p>
 
-<p>
-  GitHub:
-  <a href="https://github.com/YOUR_USERNAME">
-    YOUR_USERNAME
-  </a>
-</p>
 
 <p>
   LinkedIn:
-  <a href="https://www.linkedin.com/in/YOUR_USERNAME/">
+  <a href="https://www.linkedin.com/in/kanak-thapa-8178782a2/">
     YOUR_USERNAME
   </a>
 </p>
