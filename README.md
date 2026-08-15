@@ -277,12 +277,6 @@ screenshots/
   make your changes, and submit a pull request.
 </p>
 
-<h2>📄 License</h2>
-
-<p>
-  This project is created for educational and portfolio purposes.
-</p>
-
 <h2>👩‍💻 Author</h2>
 
 <p>
@@ -293,7 +287,7 @@ screenshots/
 <p>
   LinkedIn:
   <a href="https://www.linkedin.com/in/kanak-thapa-8178782a2/">
-    YOUR_USERNAME
+    Kanak thapa
   </a>
 </p>
 
