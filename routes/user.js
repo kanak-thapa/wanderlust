@@ -8,7 +8,7 @@ const userControllers = require("../controllers/users.js");
 
 router.route("/signup")
 .get(userControllers.renderSignUpForm)
-.post(wrapAsync(userControllers.signUp));
+.post(userControllers.signUp);
 
 //router.get("/signup", userControllers.renderSignUpForm);
 
