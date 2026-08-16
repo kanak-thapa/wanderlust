@@ -10,10 +10,6 @@ router.route("/signup")
 .get(userControllers.renderSignUpForm)
 .post(userControllers.signUp);
 
-//router.get("/signup", userControllers.renderSignUpForm);
-
-//router.post("/signup", wrapAsync(userControllers.signUp));
-//shivi 
 
 router.route("/login")
 .get(userControllers.renderLoginForm)
@@ -23,21 +19,8 @@ router.route("/login")
         failureRedirect: "/login",
         failureFlash: true,
     }),
-    //passport.authenticate('local'),
     userControllers.login
 );
-//router.get("/login",userControllers.renderLoginForm);
-
-// router.post(
-//     '/login', 
-//     saveRedirectUrl,
-//     passport.authenticate("local", {
-//         failureRedirect: "/login",
-//         failureFlash: true,
-//     }),
-//     //passport.authenticate('local'),
-//     userControllers.login
-// );
 
 router.get("/logout", userControllers.loginOut)
 module.exports = router;
