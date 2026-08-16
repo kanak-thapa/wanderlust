@@ -16,23 +16,19 @@ module.exports.showListing = async(req, res, next)=>{
     .populate({
         path: "reviews", 
         populate:{         
-        path: "author"
-    }, 
-}).populate("owner"); 
+            path: "author"
+        }, 
+    }).populate("owner"); 
+
     if(!listing){
         req.flash("error", "Listing you requested for does not exist!!");
         res.redirect("/listings");
     }
-    console.log(listing);
+    //console.log(listing);
     res.render("./listings/show.ejs", {listing});
 }
 
 module.exports.createListing = async(req, res, next)=>{
-    // let result = listingSchema.validate(req.body);
-    // console.log(result);
-    // if(result.error){
-    //     throw new ExpressError(400, result.error)
-    // }
     let url = req.file.path;
     let filename = req.file.filename;
     //console.log(url, "..", filename);
